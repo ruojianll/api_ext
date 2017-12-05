@@ -1,5 +1,5 @@
 # api_ext
-APICloud API 规范和扩展
+APICloud API 进行规范和扩展
 
 ## 如何使用
 将js文件引入到页面的任意位置。
