@@ -1,6 +1,9 @@
 # api_ext
 APICloud API 规范和扩展
 
+## 如何使用
+将js文件引入到页面的任意位置。
+
 ## 内容
 ### $api
 #### $api.objectToJson = $api.jsonToStr
