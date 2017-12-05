@@ -36,3 +36,6 @@ APICloud API 规范和扩展
 
 #### $api.getRectOf(_ELEMENT_)
 获取元素的offset并转换为x,y,w,h的形式。
+
+### api
+暂无。
