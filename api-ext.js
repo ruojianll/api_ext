@@ -2,7 +2,7 @@
 (function api_ext(global_) {
 
     //在这里扩展$api
-    function $apiExt(aim){
+    function $apiExt(aim) {
 
         aim.objectToJson = $api.jsonToStr;
 
@@ -42,57 +42,84 @@
             };
             return rect;
         }
+
+
+
     };
 
     //在这里扩展api
-    function apiExt(aim){
+    function apiExt(aim) {
 
     }
-//--------------------------------------------------------------
-    function init(){
-        if ($api && typeof $api === 'object') {
-            function $eapi(){
-
-            }
-            $eapi.prototype = $api;
-            var $eapi_ = new $eapi();
-            $apiExt($eapi_)
-            global_.$api = $eapi_;
+    //--------------------------------------------------------------
+    function init() {
+        if (!$api || !(typeof $api === 'object')) {
+            global_$api = {};
         }
 
-        function eapi(){
+        function $eapi() {
+
+        }
+        $eapi.prototype = $api;
+        var $eapi_ = new $eapi();
+        global_.$api = $eapi_;
+        $apiExt(global_.$api);
+        global_.api_ext._initCustomer$ApiExts();
+
+        function eapi() {
 
         }
         eapi.prototype = api;
         var eapi_ = new eapi();
-        apiExt(eapi_)
         global_.api = eapi_;
+        apiExt(global_.api);
+        global_.api_ext._initCustomerApiExts();
     }
 
-    if(global_.APICloudApiExtLoaded_ === true){
+    if (global_.APICloudApiExtLoaded_ === true) {
         return;
     }
     global_.APICloudApiExtLoaded_ = true;
 
     var apiready_ = global_.apiready;
-    if(apiready_ && typeof apiready_ === 'function'){//处理apiready已注册的情况
-        global_.apiready = function(){
+    if (apiready_ && typeof apiready_ === 'function') { //处理apiready已注册的情况
+        global_.apiready = function() {
             init();
             apiready_();
         }
-    }
-    else{//处理apiready未注册的情况
+    } else { //处理apiready未注册的情况
         global_.apiready_ = init;
-        Object.defineProperty(global_,"apiready",{
-            set:function(fn){
-                this.apiready_ = function(){
+        Object.defineProperty(global_, "apiready", {
+            set: function(fn) {
+                this.apiready_ = function() {
                     init();
                     fn();
                 }
             },
-            get:function(){
+            get: function() {
                 return this.apiready_;
             }
         });
+    }
+
+    var $apiExts = [];
+    var apiExts = [];
+    global_.api_ext = {
+        registerCustomerApiExt : function(fn){
+            apiExts.push(fn);
+        },
+        registerCustomer$ApiExt : function(fn){
+            $apiExts.push(fn);
+        },
+        _initCustomerApiExts : function(fn){
+            for(var i in apiExts){
+                apiExts[i](global_.api);
+            }
+        },
+        _initCustomer$ApiExts : function(fn){
+            for(var i in $apiExts){
+                $apiExts[i](global_.$api);
+            }
+        }
     }
 })(window);
