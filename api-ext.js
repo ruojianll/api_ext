@@ -82,6 +82,7 @@
         }
     }
     else{//处理apiready未注册的情况
+        global_.apiready_ = init;
         Object.defineProperty(global_,"apiready",{
             set:function(fn){
                 this.apiready_ = function(){
