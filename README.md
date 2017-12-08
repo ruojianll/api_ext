@@ -1,5 +1,6 @@
 # api_ext
-APICloud API 进行规范和扩展
+APICloud API 进行规范和扩展。
+所有的扩展功能不能在`apiready`运行前使用，但可以在运行中或运行后使用。
 
 ## 如何使用
 将js文件引入到页面的任意位置。
@@ -46,3 +47,19 @@ APICloud API 进行规范和扩展
 
 #### console.log()
 支持传入对象，支持传入多个参数
+
+### api_ext
+#### registerCustomerApiExt(yourExtFn)
+对api对象注册你自己的扩展功能。
+```
+api_ext.registerCustomerApiExt(function(aim){
+  aim.yourExtension = function(){...}
+})
+```
+#### registerCustomer$ApiExt(yourExtFn)
+对$api对象注册你自己的扩展功能。
+```
+api_ext.registerCustomer$ApiExt(function(aim){
+  aim.yourExtension = function(){...}
+})
+```
