@@ -1,0 +1,25 @@
+{
+  "name": "api_ext",
+  "version": "1.0.0",
+  "description": "APICloud API 进行规范和扩展。\r 所有的扩展功能不能在`apiready`运行前使用，但可以在运行中或运行后使用。",
+  "main": "api-ext.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruojianll/api_ext.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ruojianll/api_ext/issues"
+  },
+  "homepage": "https://github.com/ruojianll/api_ext#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-bro": "^1.0.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
+  }
+}
