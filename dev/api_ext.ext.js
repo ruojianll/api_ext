@@ -13,12 +13,13 @@ module.exports = function(global_) {
                 type = ele.getAttribute('type');
                 type = type.toLowerCase();
                 switch (type) {
-                    case 'uiinput':
+                    case 'uimodule/uiinput':
+                        var openParam = ele.dataset.openParam;
+                        openParam = (new Function('return ' + openParam)).call(ele);
+                        var openCallback = ele.dataset.openCallback;
+                        openCallback = (new Function('return ' + openCallback)).call(ele);
                         var iUIInput = this._getUIModuleSingleton('UIInput');
-                        iUIInput.open({
-                            rect: $api.getRectOf(ele),
-                            fixedOn: api.frameName
-                        });
+                        iUIInput.open(openParam,openCallback);
                         break;
                 }
 

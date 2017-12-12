@@ -3,8 +3,8 @@ var $apiExt = require('./$api.ext');
 var globalExt = require('./global.ext');
 var api_extExt = require('./api_ext.ext');
 (function api_ext(global_) {
-    function init() {
 
+    function init() {
         globalExt(global_)
 
         if (!$api || !(typeof $api === 'object')) {

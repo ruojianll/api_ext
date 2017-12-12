@@ -6,16 +6,26 @@
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>Hello APP</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/api-ext.css" />
 	<style>
 
 	</style>
 </head>
 <body>
-<ui-module type="UIInput" style="display:block;width:100%;height:2em;background:black;"></ui-module>
+<ui-module id="" type="UIModule/UIInput" data-open-param="{
+    rect: $api.getRectOf(this),
+    fixedOn: api.frameName,
+    styles:{bgColor:'#aaa'}
+}" data-open-callback="fnUIInputOpenCallback">
+这里是UIInput
+</ui-module>
 </body>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/api-ext.js"></script>
 <script type="text/javascript">
+function fnUIInputOpenCallback(ret){
+
+}
 apiready = function(){
     api_ext.parseUIMoudle();
 }

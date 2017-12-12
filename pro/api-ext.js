@@ -46,8 +46,8 @@ var $apiExt = require('./$api.ext');
 var globalExt = require('./global.ext');
 var api_extExt = require('./api_ext.ext');
 (function api_ext(global_) {
-    function init() {
 
+    function init() {
         globalExt(global_)
 
         if (!$api || !(typeof $api === 'object')) {
@@ -124,12 +124,13 @@ module.exports = function(global_) {
                 type = ele.getAttribute('type');
                 type = type.toLowerCase();
                 switch (type) {
-                    case 'uiinput':
+                    case 'uimodule/uiinput':
+                        var openParam = ele.dataset.openParam;
+                        openParam = (new Function('return ' + openParam)).call(ele);
+                        var openCallback = ele.dataset.openCallback;
+                        openCallback = (new Function('return ' + openCallback)).call(ele);
                         var iUIInput = this._getUIModuleSingleton('UIInput');
-                        iUIInput.open({
-                            rect: $api.getRectOf(ele),
-                            fixedOn: api.frameName
-                        });
+                        iUIInput.open(openParam,openCallback);
                         break;
                 }
 
@@ -164,6 +165,7 @@ module.exports = function(global_) {
 
 },{}],5:[function(require,module,exports){
 module.exports = function(aim) {
+
     var alert_ = aim.alert;
     aim.alert = function() {
         var str = '';
@@ -185,16 +187,17 @@ module.exports = function(aim) {
     }
 
     var console_log_ = aim.console.log;
+
     aim.console.log = function() {
         var str = '';
         for (var i in arguments) {
             var p = arguments[i];
             switch (typeof p) {
-                case 'string':
-                    str += p;
-                    break;
                 case 'object':
                     str += JSON.stringify(p);
+                    break;
+                default:
+                    str += p;
                     break;
             }
             if (i < arguments.length - 1) {
