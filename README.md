@@ -81,6 +81,7 @@ apiready = function(){
 ```
 使用`ui-module`标签，`type`为`UIModule/UIInput`，`data-open-param`是`UIInput.open()`的第一个参数，`data-open-callback`是全局的回调函数。
 
+`data-open-param`支持通过`this`获取当前HTML元素。
 #### registerCustomerApiExt(yourExtFn)
 对api对象注册你自己的扩展功能。
 ```
