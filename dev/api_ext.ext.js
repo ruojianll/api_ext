@@ -2,7 +2,7 @@ module.exports = function(global_) {
     var $apiExts = [];
     var apiExts = [];
     global_.api_ext = {
-        parseUIMoudle: function(type) {
+        parseUIModule: function(type) {
             filter = 'ui-module';
             if (type && typeof type === 'string') {
                 filter += '[type="' + type + '"]'
