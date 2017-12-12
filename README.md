@@ -49,6 +49,36 @@ APICloud API 进行规范和扩展。
 支持传入对象，支持传入多个参数
 
 ### api_ext
+#### parseUIModule
+通过HTML创建UIModule。
+```
+<script>
+apiready = function(){
+	api_ext.parseUIModule();//或 api_ext.parseUIModule('UIModule/UIInput');    不传参数解析所有支持的UIModule，传递参数解析指定type的UIModule
+}
+</script>
+```
+使用`ui-module`标签，`type`传递支持的类型，具体用法见下文。
+##### UIModule/UIInput
+```
+<body>
+	<ui-module type="UIModule/UIInput" data-open-param="{
+	    rect: $api.getRectOf(this),
+	    fixedOn: api.frameName,
+	    styles:{bgColor:'#aaa'}
+	}" data-open-callback="fnUIInputOpenCallback">
+	这里是UIInput
+	</ui-module>
+</body>
+
+<script>
+	function fnUIInputOpenCallback(ret){
+		//....
+	}
+</script>
+```
+使用`ui-module`标签，`type`为`UIModule/UIInput`，`data-open-param`是`UIInput.open()`的第一个参数，`data-open-callback`是全局的回调函数。
+
 #### registerCustomerApiExt(yourExtFn)
 对api对象注册你自己的扩展功能。
 ```
