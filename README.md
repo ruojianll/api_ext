@@ -1,3 +1,5 @@
+!!!THIS REPO IS NOT MAINTAINED!!!
+
 # api_ext
 APICloud API 进行规范和扩展。
 所有的扩展功能不能在`apiready`运行前使用，但可以在运行中或运行后使用。
